@@ -14,11 +14,11 @@ function ProjectSection() {
           <h5>Projects</h5>
         </div>
         <Link
-          href={"https://github.com/topboyasante"}
+          href={"https://github.com/Jal-GG"}
           target="_blank"
           className="text-neutral-700 underline hover:text-black ease-in-out duration-500"
         >
-          <p className="text-sm">My Github</p>
+          <p className="text-sm">My GitHub</p>
         </Link>
       </div>
       <br />

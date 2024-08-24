@@ -6,35 +6,35 @@ function HeroSection() {
   return (
     <div className="pb-[10vh]">
       <div>
-        <h2 className="font-semibold">Nana Kwasi Asante</h2>
+        <h2 className="font-extrabold">Jal Patel</h2>
         <p className="text-neutral-500">
-          Software Engineer • Golang • JavaScript
+          Software Engineer • Python • JavaScript
         </p>
-        <p className="text-neutral-500">🇬🇭 Accra, Ghana</p>
+        <p className="text-neutral-500">🇮🇳 Gujarat, India</p>
       </div>
       <br />
       <div>
         <p>
-          Hi! I&apos;m a software engineer, writing code with JavaScript and Go.
+          Hi! I&apos;m a software engineer, and i write code in JavaScript and Python.
         </p>
         <br />
         <p>
-          Currently, I&apos;m exploring the world of Backend Engineering with Golang and Java. When
+          Currently, I&apos;m exploring the world of FullStack Developer with various tech stacks. When
           I&apos;m not writing code, you&apos;d catch me finishing up an episode
           or two of{" "}
           <Link
             target="_blank"
             href={
-              "https://www.google.com/search?q=two+and+a+half+men&sourceid=chrome&ie=UTF-8"
+              "https://www.crunchyroll.com/series/GRMG8ZQZR/one-piece?srsltid=AfmBOor3cCPMmv5-M71oebcnEvY4pzofcPBbnmQB57s4d_xeDiSDeX1O"
             }
             className="underline"
           >
-            Two and a Half Men
+            One Piece
           </Link>
           .
         </p>
         <div className="flex flex-row justify-between items-center gap-5 my-5">
-          <Link href={"mailto:asantekwasi101@gmail.com"} target="_blank">
+          <Link href={"mailto:jalpatelreply@gmail.com"} target="_blank">
             <button className="btn rounded-full">
               <BiEnvelope />
               <p className="text-sm mt-0">contact</p>
@@ -42,22 +42,22 @@ function HeroSection() {
           </Link>
           <div className="flex items-center gap-5">
             <Link
-              href={"https://github.com/topboyasante"}
+              href={"https://github.com/Jal-GG"}
               target="_blank"
               className="text-2xl"
             >
               <SiGithub />
             </Link>
-            <Link
-              href={"https://dev.to/topboyasante"}
+            {/* <Link
+              href={""}
               target="_blank"
               className="text-2xl"
             >
               <SiDevdotto />
-            </Link>
+            </Link> */}
             <Link
               href={
-                "https://www.linkedin.com/in/nana-kwasi-asante-abb32a226/"
+                "https://www.linkedin.com/in/jal-patel-4aa8b8243/"
               }
               target="_blank"
               className="text-2xl"

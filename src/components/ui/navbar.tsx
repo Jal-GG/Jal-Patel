@@ -12,19 +12,19 @@ function Navbar() {
         </Link>
         <div className="text-neutral-500">
           <div className="flex items-center gap-3">
-            <Link href={`https://www.github.com/topboyasante`} target="_blank">
+            <Link href={`https://github.com/Jal-GG`} target="_blank">
               <p className="text-sm hover:text-black ease-in duration-200">
                 projects
               </p>
             </Link>
-            <Link href={`/blog`}>
+            {/* <Link href={`/blog`}>
               <p className="text-sm hover:text-black ease-in duration-200">
                 posts
               </p>
-            </Link>
+            </Link> */}
             <Link
               href={
-                "https://docs.google.com/document/d/1MEi35aGzVYPv6WUrado8dF9wmv1NKjQygclH3OUE2Xo/edit?usp=sharing"
+                "https://drive.google.com/file/d/1dSIADQgoLyVwr0axg4NQkYyYkEmIo9J1/view?usp=sharing"
               }
               target="_blank"
             >

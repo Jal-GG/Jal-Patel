@@ -7,9 +7,9 @@ function HomePage() {
   return (
     <div>
       <HeroSection />
-      <BlogPosts />
+      {/* <BlogPosts /> */}
       <ProjectSection />
-      <OSSContributions/>
+      {/* <OSSContributions/> */}
     </div>
   );
 }

@@ -22,8 +22,8 @@ const graphik = local({
 });
 
 export const metadata: Metadata = {
-  title: "Nana Kwasi Asante",
-  description: "My Software Engineering Portfolio",
+  title: "Jal Patel",
+  description: "My Portfolio",
  
   openGraph: {
     title: "Nana Kwasi Asante",
