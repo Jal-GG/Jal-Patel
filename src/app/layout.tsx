@@ -26,10 +26,9 @@ export const metadata: Metadata = {
   description: "My Portfolio",
  
   openGraph: {
-    title: "Nana Kwasi Asante",
+    title: "Jal Patel",
     description: "My Software Engineering Portfolio",
-    url: "https://nkasante.com",
-    siteName: "Nana Kwasi Asante",
+    siteName: "Jal Patel",
     images: [
       {
         url: "https://nkasante.com/images/nk-dark.png",
