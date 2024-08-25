@@ -3,6 +3,7 @@ import local from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const graphik = local({
   src: [
@@ -56,6 +57,7 @@ export default function RootLayout({
         <Navbar />
         <div className="py-[5vh] max-w-xl mx-auto px-5">{children}</div>
         <Footer />
+        <SpeedInsights/>
       </body>
     </html>
   );
