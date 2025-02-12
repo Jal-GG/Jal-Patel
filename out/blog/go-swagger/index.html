@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/_next/static/css/8708fdca9c934791.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/5315ad90de56bd06.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/webpack-c4c2f9389579b197.js"/><script src="/_next/static/chunks/fd9d1056-2821b0f0cabcd8bd.js" async=""></script><script src="/_next/static/chunks/23-8b33ab6e73e21c24.js" async=""></script><script src="/_next/static/chunks/main-app-e03d99810ef03fc2.js" async=""></script><script src="/_next/static/chunks/0e762574-fa44b4d780837be5.js" async=""></script><script src="/_next/static/chunks/231-306702256c5436ea.js" async=""></script><script src="/_next/static/chunks/app/(posts)/blog/page-0650264474714836.js" async=""></script><script src="/_next/static/chunks/442-f5e81817ce65cbd8.js" async=""></script><script src="/_next/static/chunks/app/layout-8716fc720bca4a9e.js" async=""></script><script src="/_next/static/chunks/app/(posts)/blog/%5Bslug%5D/page-804ba9bc9a3e6562.js" async=""></script><title>Blog | Nana Kwasi Asante</title><meta name="description" content="My Blog"/><meta property="og:title" content="Nana Kwasi Asante"/><meta property="og:description" content="My Blog"/><meta property="og:url" content="https://nkasante.com/"/><meta property="og:site_name" content="Blog | Nana Kwasi Asante"/><meta property="og:image" content="https://nkasante.com/images/nk.png"/><meta property="og:image:width" content="800"/><meta property="og:image:height" content="600"/><meta property="og:image" content="https://nkasante.com/images/nk.png"/><meta property="og:image:width" content="1800"/><meta property="og:image:height" content="1600"/><meta property="og:image:alt" content="Nana Kwasi Asante"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Nana Kwasi Asante"/><meta name="twitter:description" content="My Blog"/><meta name="twitter:image" content="https://nkasante.com/images/nk.png"/><meta name="twitter:image:width" content="800"/><meta name="twitter:image:height" content="600"/><meta name="twitter:image" content="https://nkasante.com/images/nk.png"/><meta name="twitter:image:width" content="1800"/><meta name="twitter:image:height" content="1600"/><meta name="twitter:image:alt" content="Nana Kwasi Asante"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="256x256"/><link rel="icon" href="/icon.ico?c3dc53cc4ee29824" type="image/x-icon" sizes="256x256"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_6820b1"><div class="sticky top-0 w-full px-2 bg-[#fefee3] h-[7vh]"><nav class="flex justify-between items-center max-w-xl mx-auto h-full px-6 py-2 border-b border-b-gray-400"><a href="/"><img alt="logo" loading="lazy" width="25" height="25" decoding="async" data-nimg="1" style="color:transparent" src="/_next/static/media/nk-logo.b0761ac2.png"/></a><div class="text-neutral-500"><div class="flex items-center gap-3"><a target="_blank" href="https://github.com/Jal-GG"><p class="text-sm hover:text-black ease-in duration-200">projects</p></a><a target="_blank" href="https://drive.google.com/file/d/1dSIADQgoLyVwr0axg4NQkYyYkEmIo9J1/view?usp=sharing"><p class="text-sm hover:text-black ease-in duration-200">resume</p></a></div></div></nav></div><div class="py-[5vh] max-w-xl mx-auto px-5"><div><main class="my-5 md_markdown__8U1Ia w-full"><div class="my-5"><button class="flex gap-2 text-sm bg-transparent text-black items-center p-0 hover:underline"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path></svg> Go Back</button></div><div><h5>Documenting your Go APIs with Swagger</h5><p class="text-neutral-500">8th June 2024</p></div><br/><div class="w-full"><p>In the realm of API development, clear and comprehensive documentation is crucial for ensuring seamless integration and usability. Swagger, an open-source framework, excels at automating the generation of interactive and up-to-date API documentation. For developers working with Go, integrating Swagger can significantly enhance the clarity and accessibility of your APIs. This article will delve into the benefits of using Swagger with Go and provide a straightforward guide to getting started, helping you create well-documented APIs that are easy for developers to understand and use.</p>
+<br/>
+<p>Swagger provides a comprehensive ecosystem to help design, build, document, and consume RESTful web services. By integrating Swagger with your Go APIs, you can automatically generate interactive and up-to-date API documentation that enhances clarity and usability, fostering better communication between your development team and API consumers.</p>
+<p>To document our APIs, we will use the <a href="https://github.com/swaggo/swag">swaggo/swag</a> package. This package converts Go annotations to Swagger Documentation 2.0.</p>
+<br/>
+<h5>Setting Up</h5>
+<p>To install Swag, you can use the following Go command:</p>
+<p><code>go install github.com/swaggo/swag/cmd/swag@latest</code></p>
+<p>Alternatively you can run the docker image using:</p>
+<p><code>docker run --rm -v $(pwd):/code ghcr.io/swaggo/swag:latest</code></p>
+<p>Navigate to the root directory of your project where your main.go file is located. Run the swag init command to parse your comments and generate the necessary documentation files (specifically, the docs folder and the docs/docs.go file).</p>
+<p>If your main.go file is in a subdirectory (e.g., cmd), specify the path using the -g flag:</p>
+<p><code>swag init -g cmd/main.go</code></p>
+<p>If main.go is in the root directory, simply run:</p>
+<p><code>swag init</code></p>
+<p>If <code>swag init</code> does not work, try this <a href="https://github.com/swaggo/swag/issues/197#issuecomment-1042794060">method</a>.</p>
+<p>The example API in this guide is built using the <a href="https://gin-gonic.com/">Gin Web Framework</a>. To integrate Swag with other frameworks, refer to the documentation available on the Swag GitHub page. For detailed instructions and framework-specific configurations, consult the respective sections in the Swag documentation.</p>
+<br/>
+<h5>API Annotations</h5>
+<p>In the context of Swagger and tools like swaggo/swag, API annotations are special comments within your code that describe your API endpoints. These annotations facilitate the automatic generation of your API documentation. To enable Swagger to generate documentation, annotations should be added in two primary locations:</p>
+<ul>
+<li>Our <code>main.go</code> file, and</li>
+<li>Before each controller function</li>
+</ul>
+<h5>The <code>main.go</code> file</h5>
+<p>In the main.go file, general annotations are added. These annotations typically include:</p>
+<ul>
+<li>API Host URL</li>
+<li>API Base Path</li>
+<li>Documentation Title</li>
+<li>Documentation Version</li>
+<li>Documentation Description</li>
+<li>Your Name and Contact Details</li>
+<li>Security Definitions (for endpoints requiring authorization)</li>
+</ul>
+<p>Below is an example of how to annotate your main.go file:</p>
+<pre><pre><code class="language-go">package main
+
+import (
+	&quot;log&quot;
+
+	&quot;github.com/gin-contrib/cors&quot;
+	&quot;github.com/gin-gonic/gin&quot;
+	&quot;path-to-your-module/models&quot;
+	&quot;path-to-your-module/routes&quot;
+	&quot;path-to-your-module/internal/database&quot;
+	&quot;path-to-your-module/pkg/config&quot;
+
+    // Install these packages
+	swaggerFiles &quot;github.com/swaggo/files&quot;
+	ginSwagger &quot;github.com/swaggo/gin-swagger&quot;
+
+    // Import the docs package generated by swag
+	_ &quot;path-to-your-module/docs&quot;
+)
+
+//	@title			            Your-API-Name
+//	@version		            Your-API-Version
+//	@description	            Your-API-Description
+//	@termsOfService	            http://swagger.io/terms/
+//	@contact.name	            Your-Name
+//	@contact.url	            Your-Website
+//	@contact.email	            Your-Email
+//	@license.name	            Apache 2.0
+//	@license.url	            http://www.apache.org/licenses/LICENSE-2.0.html
+//	@host		                Your-API-Host
+//	@BasePath	                Your-API-BasePath
+//	@securityDefinitions.apikey	Your-Security-KeyName
+//	@in							header
+//	@name						Authorization
+//	@externalDocs.description	OpenAPI
+//	@externalDocs.url			https://swagger.io/resources/open-api/
+
+func init() {
+	database.ConnectToDB()
+}
+
+func main() {
+	//Run AutoMigrations for your models
+	err := database.DB.AutoMigrate(&amp;models.Model{})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	r := gin.Default()
+	r.Use(cors.Default())
+
+	v1 := r.Group(&quot;/api/v1&quot;)
+	{
+		routes.AuthRoutes(v1)
+	}
+
+	// Add this endpoint to access your swagger documentation
+	r.GET(&quot;/swagger/*any&quot;, ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	r.Run(config.ENV.ServerPort)
+}
+
+</code></pre></pre>
+<br/>
+<h5>Annotations on Controller Functions</h5>
+<p>In addition to the main file, annotations should be placed before each controller function. These annotations describe the specifics of each endpoint, such as:</p>
+<ul>
+<li>HTTP method (GET, POST, PUT, DELETE)</li>
+<li>Endpoint path</li>
+<li>Summary of the endpoint&#x27;s functionality</li>
+<li>Parameters (query, path, body)</li>
+<li>Response types and descriptions</li>
+<li>Security requirements (if any)</li>
+</ul>
+<p>By systematically adding these annotations, you ensure that your API documentation is thorough and accurately reflects your API&#x27;s functionality.</p>
+<p>Here&#x27;s an example of how you might annotate your controller functions:</p>
+<pre><pre><code class="language-go">package controller
+
+// Get All Snippets godoc
+//
+//	@Summary		Get Snippets
+//	@Description	Get all snippets
+//	@Tags			Snippets
+//	@Accept			json
+//	@Produce		json
+//	@Success		200	{object}	types.APISuccessMessage
+//	@Failure		400	{object}	types.APIErrorMessage
+//	@Failure		500	{object}	types.APIErrorMessage
+//	@Router			/snippets [get]
+func (c *Controller) GetSnippet(ctx *gin.Context) {
+    // Your controller function
+}
+
+// Create Snippet godoc
+//
+//	@Summary		Create a Snippet
+//	@Description	Create a Snippet
+//	@Tags			Snippets
+//	@Accept			json
+//	@Produce		json
+//	@Security		Your-Security-KeyName
+//	@Param			Snippet	body		types.NewSnippetRequest	true	&quot;snippet&quot;
+//	@Success		200		{object}	types.APISuccessMessage
+//	@Failure		400		{object}	types.APIErrorMessage
+//	@Failure		500		{object}	types.APIErrorMessage
+//	@Router			/snippets/create [post]
+func (c *Controller) CreateSnippet(ctx *gin.Context) {
+    // Your controller function
+}
+</code></pre></pre>
+<br/>
+<h5>Note:</h5>
+<p>For this to work, you must:</p>
+<ol>
+<li>Have types for your request body and responses. For this, I created <code>types.APISuccessMessage</code> and <code>types.APIErrorMessage</code> for my responses, and
+<code>types.NewSnippetRequest</code> for a request body:</li>
+</ol>
+<pre><pre><code class="language-go">package types
+
+type APIErrorMessage struct {
+	ErrorMessage string `json:&quot;error&quot;`
+}
+
+type APISuccessMessage struct {
+	SuccessMessage string `json:&quot;success&quot;`
+	Data           any    `json:&quot;data&quot;`
+}
+
+type NewSnippetRequest struct {
+	Title       string `json:&quot;title&quot;`
+	Description string `json:&quot;description&quot;`
+	Code        string `json:&quot;code&quot;`
+}
+
+</code></pre></pre>
+<ol start="2">
+<li>Use <code>//	@Security		Your-Security-KeyName</code> if your endpoint requires some authorization (like a JWT Token).</li>
+</ol>
+<p><code>Your-Security-KeyName</code> should be the same in your controller function, and your <code>main.go</code> file.</p>
+<br/>
+<h5>What&#x27;s next?</h5>
+<p>Initialize swag again with <code>swag init</code> or <code>swag init -g cmd/main.go</code>, and access the documentation at <code>http://HOST_URL/swagger/index.html/</code>.</p>
+<p>Replace <code>HOST_URL</code> with your API URL.</p></div></main></div></div><footer class="flex justify-between items-center max-w-xl mx-auto h-full px-6 py-5"></footer><!--$!--><template data-dgst="BAILOUT_TO_CLIENT_SIDE_RENDERING"></template><!--/$--><script src="/_next/static/chunks/webpack-c4c2f9389579b197.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0]);self.__next_f.push([2,null])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/css/8708fdca9c934791.css\",\"style\"]\n2:HL[\"/_next/static/css/5315ad90de56bd06.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"3:I[5751,[],\"\"]\n6:I[9275,[],\"\"]\n8:I[1343,[],\"\"]\n9:I[231,[\"779\",\"static/chunks/0e762574-fa44b4d780837be5.js\",\"231\",\"static/chunks/231-306702256c5436ea.js\",\"922\",\"static/chunks/app/(posts)/blog/page-0650264474714836.js\"],\"\"]\na:I[8173,[\"231\",\"static/chunks/231-306702256c5436ea.js\",\"442\",\"static/chunks/442-f5e81817ce65cbd8.js\",\"185\",\"static/chunks/app/layout-8716fc720bca4a9e.js\"],\"Image\"]\nf:I[7240,[\"231\",\"static/chunks/231-306702256c5436ea.js\",\"442\",\"static/chunks/442-f5e81817ce65cbd8.js\",\"185\",\"static/chunks/app/layout-8716fc720bca4a9e.js\"],\"SpeedInsights\"]\n11:I[6130,[],\"\"]\n7:[\"slug\",\"go-swagger\",\"d\"]\nb:{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"}\nc:{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"}\nd:{\"display\":\"inline-block\"}\ne:{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0}\n12:[]\n"])</script><script>self.__next_f.push([1,"0:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/8708fdca9c934791.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\"}]],[\"$\",\"$L3\",null,{\"buildId\":\"zlWzDOki_Z8ewlkQI4IcY\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/blog/go-swagger/\",\"initialTree\":[\"\",{\"children\":[\"(posts)\",{\"children\":[\"blog\",{\"children\":[[\"slug\",\"go-swagger\",\"d\"],{\"children\":[\"__PAGE__?{\\\"slug\\\":\\\"go-swagger\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialSeedData\":[\"\",{\"children\":[\"(posts)\",{\"children\":[\"blog\",{\"children\":[[\"slug\",\"go-swagger\",\"d\"],{\"children\":[\"__PAGE__\",{},[[\"$L4\",\"$L5\"],null],null]},[\"$\",\"$L6\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"(posts)\",\"children\",\"blog\",\"children\",\"$7\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L8\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/5315ad90de56bd06.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\"}]]}],null]},[[\"$\",\"div\",null,{\"children\":[\"$\",\"$L6\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"(posts)\",\"children\",\"blog\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L8\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"styles\":null}]}],null],null]},[\"$\",\"$L6\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"(posts)\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L8\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":null}],null]},[[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_6820b1\",\"children\":[[\"$\",\"div\",null,{\"className\":\"sticky top-0 w-full px-2 bg-[#fefee3] h-[7vh]\",\"children\":[\"$\",\"nav\",null,{\"className\":\"flex justify-between items-center max-w-xl mx-auto h-full px-6 py-2 border-b border-b-gray-400\",\"children\":[[\"$\",\"$L9\",null,{\"href\":\"/\",\"children\":[\"$\",\"$La\",null,{\"src\":{\"src\":\"/_next/static/media/nk-logo.b0761ac2.png\",\"height\":1200,\"width\":1200,\"blurDataURL\":\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAQAAABuBnYAAAAARElEQVR42gXAoQ3AIBAF0Pc7RZtUdUMMFoNmUQZAXkN8HjcI0JRjIkIwlLKAy4tlKx3oyrbwuoCllIEQwXSUBgTcHp/87zoStYuQbUMAAAAASUVORK5CYII=\",\"blurWidth\":8,\"blurHeight\":8},\"alt\":\"logo\",\"width\":25,\"height\":25}]}],[\"$\",\"div\",null,{\"className\":\"text-neutral-500\",\"children\":[\"$\",\"div\",null,{\"className\":\"flex items-center gap-3\",\"children\":[[\"$\",\"$L9\",null,{\"href\":\"https://github.com/Jal-GG\",\"target\":\"_blank\",\"children\":[\"$\",\"p\",null,{\"className\":\"text-sm hover:text-black ease-in duration-200\",\"children\":\"projects\"}]}],[\"$\",\"$L9\",null,{\"href\":\"https://drive.google.com/file/d/1dSIADQgoLyVwr0axg4NQkYyYkEmIo9J1/view?usp=sharing\",\"target\":\"_blank\",\"children\":[\"$\",\"p\",null,{\"className\":\"text-sm hover:text-black ease-in duration-200\",\"children\":\"resume\"}]}]]}]}]]}]}],[\"$\",\"div\",null,{\"className\":\"py-[5vh] max-w-xl mx-auto px-5\",\"children\":[\"$\",\"$L6\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L8\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":\"$b\",\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":\"$c\",\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":\"$d\",\"children\":[\"$\",\"h2\",null,{\"style\":\"$e\",\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":null}]}],[\"$\",\"footer\",null,{\"className\":\"flex justify-between items-center max-w-xl mx-auto h-full px-6 py-5\"}],[\"$\",\"$Lf\",null,{}]]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[false,\"$L10\"],\"globalErrorComponent\":\"$11\",\"missingSlots\":\"$W12\"}]]\n"])</script><script>self.__next_f.push([1,"13:I[3141,[\"779\",\"static/chunks/0e762574-fa44b4d780837be5.js\",\"275\",\"static/chunks/app/(posts)/blog/%5Bslug%5D/page-804ba9bc9a3e6562.js\"],\"default\"]\n14:T666,package main\r\n\r\nimport (\r\n\t\"log\"\r\n\r\n\t\"github.com/gin-contrib/cors\"\r\n\t\"github.com/gin-gonic/gin\"\r\n\t\"path-to-your-module/models\"\r\n\t\"path-to-your-module/routes\"\r\n\t\"path-to-your-module/internal/database\"\r\n\t\"path-to-your-module/pkg/config\"\r\n\r\n    // Install these packages\r\n\tswaggerFiles \"github.com/swaggo/files\"\r\n\tginSwagger \"github.com/swaggo/gin-swagger\"\r\n\r\n    // Import the docs package generated by swag\r\n\t_ \"path-to-your-module/docs\"\r\n)\r\n\r\n//\t@title\t\t\t            Your-API-Name\r\n//\t@version\t\t            Your-API-Version\r\n//\t@description\t            Your-API-Description\r\n//\t@termsOfService\t            http://swagger.io/terms/\r\n//\t@contact.name\t            Your-Name\r\n//\t@contact.url\t            Your-Website\r\n//\t@contact.email\t            Your-Email\r\n//\t@license.name\t            Apache 2.0\r\n//\t@license.url\t            http://www.apache.org/licenses/LICENSE-2.0.html\r\n//\t@host\t\t                Your-API-Host\r\n//\t@BasePath\t                Your-API-BasePath\r\n//\t@securityDefinitions.apikey\tYour-Security-KeyName\r\n//\t@in\t\t\t\t\t\t\theader\r\n//\t@name\t\t\t\t\t\tAuthorization\r\n//\t@externalDocs.description\tOpenAPI\r\n//\t@externalDocs.url\t\t\thttps://swagger.io/resources/open-api/\r\n\r\nfunc init() {\r\n\tdatabase.ConnectToDB()\r\n}\r\n\r\nfunc main() {\r\n\t//Run AutoMigrations for your models\r\n\terr := database.DB.AutoMigrate(\u0026models.Model{})\r\n\tif err != nil {\r\n\t\tlog.Fatal(err)\r\n\t}\r\n\r\n\tr := gin.Default()\r\n\tr.Use(cors.Default())\r\n\r\n\tv1 := r.Group(\"/api/v1\")\r\n\t{\r\n\t\troutes.AuthRoutes(v1)\r\n\t}\r\n\r\n\t// Add this endpoint to access your swagger documentation\r\n\tr.GET(\"/swagger/*any\", ginSwagger.WrapHandler(swaggerFiles.Handler))\r\n\r\n\tr.Run(config.ENV.ServerPort)\r\n}\r\n\n"])</script><script>self.__next_f.push([1,"5:[\"$\",\"main\",null,{\"className\":\"my-5 md_markdown__8U1Ia w-full\",\"children\":[[\"$\",\"$L13\",null,{}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h5\",null,{\"children\":\"Documenting your Go APIs with Swagger\"}],[\"$\",\"p\",null,{\"className\":\"text-neutral-500\",\"children\":\"8th June 2024\"}]]}],[\"$\",\"br\",null,{}],[\"$\",\"div\",null,{\"className\":\"w-full\",\"children\":[[\"$\",\"p\",null,{\"children\":\"In the realm of API development, clear and comprehensive documentation is crucial for ensuring seamless integration and usability. Swagger, an open-source framework, excels at automating the generation of interactive and up-to-date API documentation. For developers working with Go, integrating Swagger can significantly enhance the clarity and accessibility of your APIs. This article will delve into the benefits of using Swagger with Go and provide a straightforward guide to getting started, helping you create well-documented APIs that are easy for developers to understand and use.\"}],\"\\n\",[\"$\",\"br\",null,{}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"Swagger provides a comprehensive ecosystem to help design, build, document, and consume RESTful web services. By integrating Swagger with your Go APIs, you can automatically generate interactive and up-to-date API documentation that enhances clarity and usability, fostering better communication between your development team and API consumers.\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":[\"To document our APIs, we will use the \",[\"$\",\"a\",null,{\"href\":\"https://github.com/swaggo/swag\",\"children\":\"swaggo/swag\"}],\" package. This package converts Go annotations to Swagger Documentation 2.0.\"]}],\"\\n\",[\"$\",\"br\",null,{}],\"\\n\",[\"$\",\"h5\",null,{\"children\":\"Setting Up\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"To install Swag, you can use the following Go command:\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":[\"$\",\"code\",null,{\"children\":\"go install github.com/swaggo/swag/cmd/swag@latest\"}]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"Alternatively you can run the docker image using:\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":[\"$\",\"code\",null,{\"children\":\"docker run --rm -v $(pwd):/code ghcr.io/swaggo/swag:latest\"}]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"Navigate to the root directory of your project where your main.go file is located. Run the swag init command to parse your comments and generate the necessary documentation files (specifically, the docs folder and the docs/docs.go file).\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"If your main.go file is in a subdirectory (e.g., cmd), specify the path using the -g flag:\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":[\"$\",\"code\",null,{\"children\":\"swag init -g cmd/main.go\"}]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"If main.go is in the root directory, simply run:\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":[\"$\",\"code\",null,{\"children\":\"swag init\"}]}],\"\\n\",[\"$\",\"p\",null,{\"children\":[\"If \",[\"$\",\"code\",null,{\"children\":\"swag init\"}],\" does not work, try this \",[\"$\",\"a\",null,{\"href\":\"https://github.com/swaggo/swag/issues/197#issuecomment-1042794060\",\"children\":\"method\"}],\".\"]}],\"\\n\",[\"$\",\"p\",null,{\"children\":[\"The example API in this guide is built using the \",[\"$\",\"a\",null,{\"href\":\"https://gin-gonic.com/\",\"children\":\"Gin Web Framework\"}],\". To integrate Swag with other frameworks, refer to the documentation available on the Swag GitHub page. For detailed instructions and framework-specific configurations, consult the respective sections in the Swag documentation.\"]}],\"\\n\",[\"$\",\"br\",null,{}],\"\\n\",[\"$\",\"h5\",null,{\"children\":\"API Annotations\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"In the context of Swagger and tools like swaggo/swag, API annotations are special comments within your code that describe your API endpoints. These annotations facilitate the automatic generation of your API documentation. To enable Swagger to generate documentation, annotations should be added in two primary locations:\"}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":[\"Our \",[\"$\",\"code\",null,{\"children\":\"main.go\"}],\" file, and\"]}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"Before each controller function\"}],\"\\n\"]}],\"\\n\",[\"$\",\"h5\",null,{\"children\":[\"The \",[\"$\",\"code\",null,{\"children\":\"main.go\"}],\" file\"]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"In the main.go file, general annotations are added. These annotations typically include:\"}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"API Host URL\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"API Base Path\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"Documentation Title\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"Documentation Version\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"Documentation Description\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"Your Name and Contact Details\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"Security Definitions (for endpoints requiring authorization)\"}],\"\\n\"]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"Below is an example of how to annotate your main.go file:\"}],\"\\n\",[\"$\",\"pre\",null,{\"children\":[\"$\",\"pre\",null,{\"children\":[\"$\",\"code\",null,{\"className\":\"language-go\",\"children\":\"$14\"}]}]}],\"\\n\",[\"$\",\"br\",null,{}],\"\\n\",[\"$\",\"h5\",null,{\"children\":\"Annotations on Controller Functions\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"In addition to the main file, annotations should be placed before each controller function. These annotations describe the specifics of each endpoint, such as:\"}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"HTTP method (GET, POST, PUT, DELETE)\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"Endpoint path\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"Summary of the endpoint's functionality\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"Parameters (query, path, body)\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"Response types and descriptions\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"Security requirements (if any)\"}],\"\\n\"]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"By systematically adding these annotations, you ensure that your API documentation is thorough and accurately reflects your API's functionality.\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"Here's an example of how you might annotate your controller functions:\"}],\"\\n\",[\"$\",\"pre\",null,{\"children\":[\"$\",\"pre\",null,{\"children\":[\"$\",\"code\",null,{\"className\":\"language-go\",\"children\":\"package controller\\r\\n\\r\\n// Get All Snippets godoc\\r\\n//\\r\\n//\\t@Summary\\t\\tGet Snippets\\r\\n//\\t@Description\\tGet all snippets\\r\\n//\\t@Tags\\t\\t\\tSnippets\\r\\n//\\t@Accept\\t\\t\\tjson\\r\\n//\\t@Produce\\t\\tjson\\r\\n//\\t@Success\\t\\t200\\t{object}\\ttypes.APISuccessMessage\\r\\n//\\t@Failure\\t\\t400\\t{object}\\ttypes.APIErrorMessage\\r\\n//\\t@Failure\\t\\t500\\t{object}\\ttypes.APIErrorMessage\\r\\n//\\t@Router\\t\\t\\t/snippets [get]\\r\\nfunc (c *Controller) GetSnippet(ctx *gin.Context) {\\r\\n    // Your controller function\\r\\n}\\r\\n\\r\\n// Create Snippet godoc\\r\\n//\\r\\n//\\t@Summary\\t\\tCreate a Snippet\\r\\n//\\t@Description\\tCreate a Snippet\\r\\n//\\t@Tags\\t\\t\\tSnippets\\r\\n//\\t@Accept\\t\\t\\tjson\\r\\n//\\t@Produce\\t\\tjson\\r\\n//\\t@Security\\t\\tYour-Security-KeyName\\r\\n//\\t@Param\\t\\t\\tSnippet\\tbody\\t\\ttypes.NewSnippetRequest\\ttrue\\t\\\"snippet\\\"\\r\\n//\\t@Success\\t\\t200\\t\\t{object}\\ttypes.APISuccessMessage\\r\\n//\\t@Failure\\t\\t400\\t\\t{object}\\ttypes.APIErrorMessage\\r\\n//\\t@Failure\\t\\t500\\t\\t{object}\\ttypes.APIErrorMessage\\r\\n//\\t@Router\\t\\t\\t/snippets/create [post]\\r\\nfunc (c *Controller) CreateSnippet(ctx *gin.Context) {\\r\\n    // Your controller function\\r\\n}\\n\"}]}]}],\"\\n\",[\"$\",\"br\",null,{}],\"\\n\",[\"$\",\"h5\",null,{\"children\":\"Note:\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"For this to work, you must:\"}],\"\\n\",[\"$\",\"ol\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":[\"Have types for your request body and responses. For this, I created \",[\"$\",\"code\",null,{\"children\":\"types.APISuccessMessage\"}],\" and \",[\"$\",\"code\",null,{\"children\":\"types.APIErrorMessage\"}],\" for my responses, and\\r\\n\",[\"$\",\"code\",null,{\"children\":\"types.NewSnippetRequest\"}],\" for a request body:\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"pre\",null,{\"children\":[\"$\",\"pre\",null,{\"children\":[\"$\",\"code\",null,{\"className\":\"language-go\",\"children\":\"package types\\r\\n\\r\\ntype APIErrorMessage struct {\\r\\n\\tErrorMessage string `json:\\\"error\\\"`\\r\\n}\\r\\n\\r\\ntype APISuccessMessage struct {\\r\\n\\tSuccessMessage string `json:\\\"success\\\"`\\r\\n\\tData           any    `json:\\\"data\\\"`\\r\\n}\\r\\n\\r\\ntype NewSnippetRequest struct {\\r\\n\\tTitle       string `json:\\\"title\\\"`\\r\\n\\tDescription string `json:\\\"description\\\"`\\r\\n\\tCode        string `json:\\\"code\\\"`\\r\\n}\\r\\n\\n\"}]}]}],\"\\n\",[\"$\",\"ol\",null,{\"start\":\"2\",\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":[\"Use \",[\"$\",\"code\",null,{\"children\":\"//\\t@Security\\t\\tYour-Security-KeyName\"}],\" if your endpoint requires some authorization (like a JWT Token).\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"p\",null,{\"children\":[[\"$\",\"code\",null,{\"children\":\"Your-Security-KeyName\"}],\" should be the same in your controller function, and your \",[\"$\",\"code\",null,{\"children\":\"main.go\"}],\" file.\"]}],\"\\n\",[\"$\",\"br\",null,{}],\"\\n\",[\"$\",\"h5\",null,{\"children\":\"What's next?\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":[\"Initialize swag again with \",[\"$\",\"code\",null,{\"children\":\"swag init\"}],\" or \",[\"$\",\"code\",null,{\"children\":\"swag init -g cmd/main.go\"}],\", and access the documentation at \",[\"$\",\"code\",null,{\"children\":\"http://HOST_URL/swagger/index.html/\"}],\".\"]}],\"\\n\",[\"$\",\"p\",null,{\"children\":[\"Replace \",[\"$\",\"code\",null,{\"children\":\"HOST_URL\"}],\" with your API URL.\"]}]]}]]}]\n"])</script><script>self.__next_f.push([1,"10:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Blog | Nana Kwasi Asante\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"My Blog\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:title\",\"content\":\"Nana Kwasi Asante\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:description\",\"content\":\"My Blog\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:url\",\"content\":\"https://nkasante.com/\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:site_name\",\"content\":\"Blog | Nana Kwasi Asante\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:image\",\"content\":\"https://nkasante.com/images/nk.png\"}],[\"$\",\"meta\",\"9\",{\"property\":\"og:image:width\",\"content\":\"800\"}],[\"$\",\"meta\",\"10\",{\"property\":\"og:image:height\",\"content\":\"600\"}],[\"$\",\"meta\",\"11\",{\"property\":\"og:image\",\"content\":\"https://nkasante.com/images/nk.png\"}],[\"$\",\"meta\",\"12\",{\"property\":\"og:image:width\",\"content\":\"1800\"}],[\"$\",\"meta\",\"13\",{\"property\":\"og:image:height\",\"content\":\"1600\"}],[\"$\",\"meta\",\"14\",{\"property\":\"og:image:alt\",\"content\":\"Nana Kwasi Asante\"}],[\"$\",\"meta\",\"15\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"16\",{\"name\":\"twitter:title\",\"content\":\"Nana Kwasi Asante\"}],[\"$\",\"meta\",\"17\",{\"name\":\"twitter:description\",\"content\":\"My Blog\"}],[\"$\",\"meta\",\"18\",{\"name\":\"twitter:image\",\"content\":\"https://nkasante.com/images/nk.png\"}],[\"$\",\"meta\",\"19\",{\"name\":\"twitter:image:width\",\"content\":\"800\"}],[\"$\",\"meta\",\"20\",{\"name\":\"twitter:image:height\",\"content\":\"600\"}],[\"$\",\"meta\",\"21\",{\"name\":\"twitter:image\",\"content\":\"https://nkasante.com/images/nk.png\"}],[\"$\",\"meta\",\"22\",{\"name\":\"twitter:image:width\",\"content\":\"1800\"}],[\"$\",\"meta\",\"23\",{\"name\":\"twitter:image:height\",\"content\":\"1600\"}],[\"$\",\"meta\",\"24\",{\"name\":\"twitter:image:alt\",\"content\":\"Nana Kwasi Asante\"}],[\"$\",\"link\",\"25\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"256x256\"}],[\"$\",\"link\",\"26\",{\"rel\":\"icon\",\"href\":\"/icon.ico?c3dc53cc4ee29824\",\"type\":\"image/x-icon\",\"sizes\":\"256x256\"}]]\n4:null\n"])</script></body></html>
